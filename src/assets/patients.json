@@ -1,0 +1,26 @@
+[
+  {
+   "PatientId": 0,
+   "nome": "Alfredo Neri",
+   "sesso": "M",
+   "eta": 82
+  },
+  {
+    "PatientId": 1,
+    "nome": "Maria Bianchi",
+    "sesso": "F",
+    "eta": 73
+   },
+   {
+    "PatientId": 2,
+    "nome": "Michela Rossi",
+    "sesso": "F",
+    "eta": 77
+   },
+   {
+    "PatientId": 3,
+    "nome": "Roberto Verdi",
+    "sesso": "M",
+    "eta": 75
+   }
+]

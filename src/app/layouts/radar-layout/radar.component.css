@@ -1,0 +1,35 @@
+
+.slinkstyle:link, .slinkstyle:visited {
+  background-color: powderblue;
+  color: black;
+  padding: 10px 10px 10px 10px;
+  margin-top:10px;
+  margin-bottom:10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border: 2px solid black;
+  border-color: white;
+
+}
+.slinkstyle:hover, .slinkstyle:active {
+		color: white;
+}
+
+
+
+	#wrapper {
+  padding-top: 20px;
+  padding-left: 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 22px 35px -16px rgba(0, 0, 0, 0.1);
+  max-width: 650px;
+  margin: 35px auto;
+}
+
+#chart-line {
+  position: relative;
+  margin-top: -40px;
+}
+

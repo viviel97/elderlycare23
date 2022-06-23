@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!--Icone bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+
+
+
+  </head>
+
+  <body>
+
+    <header class="navbar  navbar-light sticky-top flex-md-nowrap p-0 py-3" style="background-color: #dcdbdb;">
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="home">Elderly Care</a>
+      <button class="navbar-toggler d-md-none collapsed mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="navbar-nav">
+        <div class="nav-item text-nowrap">
+          <span class="nav-item mx-3 mt-2">
+            <i class="bi bi-clock"></i>
+             {{ time | date: 'HH:mm:ss' }}
+          </span >
+
+          <span class="nav-item mx-3 mt-2">
+            <i class="bi bi-calendar4"></i>
+              {{ time | date: 'd/M/Y ' }}
+          </span >
+          <span class="nav-item mx-3 mt-2">
+            <i class="bi bi-person"></i> Dott. Rossi
+          </span>
+          <a class="nav-item mx-3 mt-2">
+             <i class="bi bi-bell"></i>
+          </a>
+          <a class="nav-item mx-3 mt-2">
+              <i class="bi bi-exclamation-triangle"></i>
+          </a>
+          <a  role="button" type="button" class="btn btn-secondary mx-3" href="#">Esci<i class="bi bi-box-arrow-right ms-2"></i></a>
+
+
+
+        </div>
+      </div>
+    </header>
+
+
+
+<!--BARRA MENU LATERALE-->
+  <div style="position: relative; display: block; top: auto; margin-top: 50px; margin-right: 50px;  margin-left: 50px; ">
+
+    <div class="container"> <!-- -fluid -->
+      <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse " style="background-color: #c9c9c998;">
+          <div class="position-sticky pt-3">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">Menu Principale</h6>
+
+                <a class="nav-link active" aria-current="page" href="patient">
+                 <b>Gestione pazienti</b> <hr class="mt-1 mb-1">
+                </a>
+              </li>
+
+
+              <li class="nav-item">
+                <a class="nav-link" href="assistance">
+                  Registro assistenze <hr class="mt-1 mb-1">
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="emergencies">
+                  Registro emergenze <hr class="mt-1 mb-1">
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="allradar">
+                  Gestione radar <hr class="mt-1 mb-1">
+                </a>
+              </li>
+
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Info Struttura</span>
+            </h6>
+            <ul class="nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link" >
+                  Livello: <b>2 Piano</b>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">
+                  Radar attivi: <b>4/10</b>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" >
+                  Pazienti: <b>4</b>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" >
+                  Operatori di turno: <b>8</b>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+<!--TABELLA 1-->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <div>
+            <nav aria-label="breadcrumb" style="width: 28rem;  ">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="home">Home</a></li>
+                <li class="breadcrumb-item"><a href="patient">Gestione pazienti</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Scheda paziente</li>
+              </ol>
+            </nav>
+          </div>
+
+
+          <div class="row">
+            <div class="col my-3">
+              <form>
+                <a class="btn btn-light btn-lg px-5 py-3 "  role="button" style="background-color: #c9c9c998; width: 500px; ">
+                  <h1 class="mt-2" style="font-size: 15px; margin-bottom: 20px;"><b>INFO PAZIENTE</b></h1>
+                  <div class="row px-4">
+                    <div class="col">
+                      <h1  style="font-size: 20px;"> nome:  <b>{{onejson[data].nome}}</b> </h1>
+                      <h1  style="font-size: 20px;"> età:  <b>{{onejson[data].eta}}</b> </h1>
+                      <h1  style="font-size: 20px;"> sesso:  <b>{{onejson[data].sesso}}</b> </h1>
+                    </div>
+                    <div class="col">
+                      <td *ngIf="onejson[data].sesso== 'M' "> <h1 style="font-size: 80px;"> <i class="bi bi-gender-male" style="color:#0177e6d0" ></i> </h1> </td>
+                      <td *ngIf="onejson[data].sesso== 'F' "> <h1 style="font-size: 80px;"><i class="bi bi-gender-female" style="color:#f794fcf1" ></i> </h1> </td>
+                    </div>
+
+                  </div>
+
+                 </a>
+              </form>
+            </div>
+            <div class="col my-3">
+              <form>
+                <a class="btn btn-light btn-lg px-5 py-3 "  role="button" style="background-color: #c9c9c998; width: 500px;">
+                  <h1 class="mt-2" style="font-size: 15px;"><b>STATO PAZIENTE</b></h1>
+                  <div class="row px-4">
+                    <div class="col">
+
+                      <h1  style="font-size: 40px; margin-top: 20px;"> <b>A LETTO </b> </h1>
+                    </div>
+                    <div class="col">
+
+                      <h1  style="font-size: 80px;"> <i class="bi bi-moon-stars-fill"></i> </h1>
+                    </div>
+
+                  </div>
+                 </a>
+              </form>
+            </div>
+            </div>
+
+            <div class="row">
+              <div class="col my-3">
+                <form>
+                  <a class="btn btn-light btn-lg px-5 py-3 " role="button" style="background-color: #c9c9c998;">
+                   <h1 class="mt-2" style="font-size: 15px;"><b>EMERGENZE GIORNALIERE</b></h1>
+                    <h1 class="py-4 px-4" style="font-size: 50px;"> <b> 2 </b> </h1>
+                  </a>
+                </form>
+              </div>
+              <div class="col my-3">
+                <form>
+                  <a class="btn btn-light btn-lg px-5 py-3 "  role="button" style="background-color: #c9c9c998;">
+                    <h1 class="mt-2" style="font-size: 15px;"><b>ASSISTENZE GIORNALIERE</b></h1>
+                     <h1 class="py-4 px-4" style="font-size: 50px;"> <b> 1 </b> </h1>
+                   </a>
+                </form>
+              </div>
+              <div class="col my-3">
+                <form>
+                  <a class="btn btn-light btn-lg px-5 py-3 "  role="button" style="background-color: #c9c9c998; width: 400px;">
+                    <h1 class="mt-2" style="font-size: 15px;"><b>ANDAMENTO SETTIMANALE</b></h1>
+                    <div class="row px-4">
+                      <div class="col">
+                        <h1 class="py-2" style="font-size: 10px;"> <b>EMERGENZE</b> </h1>
+                        <h1  style="font-size: 40px;"> <b>2</b> </h1>
+                      </div>
+                      <div class="col">
+                        <h1 class="py-2" style="font-size: 10px;"> <b>ASSISTENZE</b> </h1>
+                        <h1  style="font-size: 40px;"> <b>18</b> </h1>
+                      </div>
+                      <div class="col">
+                        <h1 class="py-2" style="font-size: 80px;"><i class="bi bi-pie-chart-fill"></i></h1>
+
+                      </div>
+
+                    </div>
+                   </a>
+                </form>
+              </div>
+              </div>
+
+              <div >
+                  <form>
+                    <a class="btn btn-light btn-lg px-5 py-3 mb-3" role="button" style="background-color: #c9c9c998;"  href="radar?radarId={{data}}">
+                     <h1 class="mt-2" style="font-size: 25px;"><b>MONITORAGGIO STATO RADAR</b></h1>
+                      <h1 class="py-4 px-4" style="font-size: 50px;">  <i class="bi bi-bar-chart-line-fill"  style="font-size: 100px;"></i></h1>
+                    </a>
+                  </form>
+
+              </div>
+
+
+
+
+              <div class="table-responsive">
+                <table class="table " style="border: 1px solid  #c9c9c998;">
+                 <thead>
+
+                  <p class=" my-3 mx-2" style="color: #b5b2b2d0; width: 200px;"> <b>STORICO NOTIFICHE</b> </p>
+
+                  <tr>
+
+                    <th scope="col">ORA</th>
+                    <th scope="col">MESSAGGIO</th>
+                    <th scope="col">AZIONE</th>
+                    <th scope="col">DA QUANTO</th>
+
+                  </tr>
+                </thead>
+                  <tbody>
+
+                    <tr>
+                      <td><i class="bi bi-exclamation-triangle"></i> 12:34</td>
+                      <td> Assistenza medica da operatore </td>
+                      <td> ACCETTATA</td>
+                      <td> <i class="bi bi-clock"></i> 15 min </td>
+                    </tr>
+                    <tr>
+                      <td > <i class="bi bi-bell"></i> 12:00</td>
+                      <td > Mancata assistenza operatore </td>
+                      <td>NON ACCETTATA</td>
+                      <td> <i class="bi bi-clock"></i> 5 min</td>
+                    </tr>
+
+                    <tr>
+                      <td> <i class="bi bi-bell"></i> 10:00</td>
+                      <td> Paziente a letto da più di 2 ore</td>
+                      <td>ACCETTATA</td>
+                      <td> <i class="bi bi-clock"></i> 20 min</td>
+
+                    </tr>
+
+              <!--      <a href="patient" class="position-absolute top-100 start-50 link-dark">Carica altre notifiche</a>
+              -->
+                </tbody>
+                </table>
+              </div>
+
+
+    </main>
+      </div>
+    </div>
+  </div>
+
+
+
+  </body>
+
+ <!-- Bootstrap core JavaScript
+ ================================================== -->
+ <!-- Placed at the end of the document so the pages load faster -->
+ <script src="./Jumbotron Template for Bootstrap_files/jquery-3.2.1.slim.min.js.download" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+ <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+ <script src="./Jumbotron Template for Bootstrap_files/popper.min.js.download"></script>
+ <script src="./Jumbotron Template for Bootstrap_files/bootstrap.min.js.download"></script>
+
+
+
+
+</html>
