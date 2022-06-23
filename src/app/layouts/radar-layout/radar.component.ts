@@ -11,10 +11,17 @@ import { map, share } from 'rxjs/operators';
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   series2: ApexAxisChartSeries;
+  series3: ApexAxisChartSeries;
+  series4: ApexAxisChartSeries;
+
   chart: ApexChart;
   xaxis: ApexXAxis;
   title: ApexTitleSubtitle;
   title2: ApexTitleSubtitle;
+
+  titleReal: ApexTitleSubtitle;
+  titleReal2: ApexTitleSubtitle;
+
 };
 
 @Component({
@@ -24,8 +31,8 @@ export type ChartOptions = {
 })
 export class RadarComponent implements OnInit, OnDestroy {
 
-  hearts:number []=[];
-  breaths:number []=[];
+
+
 
   json = [
     {
@@ -2008,6 +2015,1412 @@ export class RadarComponent implements OnInit, OnDestroy {
     }
   ];
 
+  json5= [
+    {
+      "RadarId": 0,
+      "active": true,
+      "Item": [
+        {
+        "ts": "2022-06-20T00:01:01.000Z",
+        "Activity": {
+          "heart": [
+            {
+                 "N": 60
+               },
+               {
+                 "N": 60
+               },
+               {
+                 "N": 61
+               }
+           ]
+          ,
+          "breath":[
+              {
+                "N": 35
+              },
+              {
+                "N": 37
+              },
+              {
+                "N": 37
+              }
+            ]
+          }
+        },
+        {
+          "ts": "2022-06-20T00:06:01.000Z",
+          "Activity": {
+            "heart": [
+              {
+                "N": 61
+              },
+              {
+                "N": 62
+              },
+              {
+                "N": 66
+              }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 38
+                },
+                {
+                  "N": 38
+                },
+                {
+                  "N": 39
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:11:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 68
+                },
+                {
+                  "N": 70
+                },
+                {
+                  "N": 72
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 40
+                },
+                {
+                  "N": 41
+                },
+                {
+                  "N": 45
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:16:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 74
+                },
+                {
+                  "N": 74
+                },
+                {
+                  "N": 75
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 45
+                },
+                {
+                  "N": 48
+                },
+                {
+                  "N": 48
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:21:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 78
+                },
+                {
+                  "N": 78
+                },
+                {
+                  "N": 77
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 50
+                },
+                {
+                  "N": 50
+                },
+                {
+                  "N": 48
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:26:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 77
+                },
+                {
+                  "N": 78
+                },
+                {
+                  "N": 75
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 48
+                },
+                {
+                  "N": 50
+                },
+                {
+                  "N": 49
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:31:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 75
+                },
+                {
+                  "N": 74
+                },
+                {
+                  "N": 74
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 47
+                },
+                {
+                  "N": 47
+                },
+                {
+                  "N": 47
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:36:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 71
+                },
+                {
+                  "N": 71
+                },
+                {
+                  "N": 71
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 45
+                },
+                {
+                  "N": 43
+                },
+                {
+                  "N": 43
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:41:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 70
+                },
+                {
+                  "N": 68
+                },
+                {
+                  "N": 68
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 40
+                },
+                {
+                  "N": 40
+                },
+                {
+                  "N": 38
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:46:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 65
+                },
+                {
+                  "N": 65
+                },
+                {
+                  "N": 65
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 35
+                },
+                {
+                  "N": 35
+                },
+                {
+                  "N": 34
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:51:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 60
+                },
+                {
+                  "N": 58
+                },
+                {
+                  "N": 57
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 33
+                },
+                {
+                  "N": 33
+                },
+                {
+                  "N": 31
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:56:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 55
+                },
+                {
+                  "N": 50
+                },
+                {
+                  "N": 50
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 28
+                },
+                {
+                  "N": 28
+                },
+                {
+                  "N": 26
+                }
+              ]
+            }
+        }
+
+      ]
+    },
+    {
+      "RadarId": 1,
+      "active": true,
+      "Item": [
+        {
+        "ts": "2022-06-20T00:01:01.000Z",
+        "Activity": {
+          "heart": [
+            {
+                 "N": 55
+               },
+               {
+                 "N": 55
+               },
+               {
+                 "N": 55
+               }
+           ]
+          ,
+          "breath":[
+              {
+                "N": 30
+              },
+              {
+                "N": 30
+              },
+              {
+                "N": 28
+              }
+            ]
+          }
+        },
+        {
+          "ts": "2022-06-20T00:06:01.000Z",
+          "Activity": {
+            "heart": [
+              {
+                "N": 60
+              },
+              {
+                "N": 63
+              },
+              {
+                "N": 66
+              }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 28
+                },
+                {
+                  "N": 26
+                },
+                {
+                  "N": 26
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:11:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 66
+                },
+                {
+                  "N": 65
+                },
+                {
+                  "N": 66
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 25
+                },
+                {
+                  "N": 25
+                },
+                {
+                  "N": 28
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:16:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 68
+                },
+                {
+                  "N": 67
+                },
+                {
+                  "N": 68
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 28
+                },
+                {
+                  "N": 28
+                },
+                {
+                  "N": 28
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:21:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 66
+                },
+                {
+                  "N": 65
+                },
+                {
+                  "N": 66
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 31
+                },
+                {
+                  "N": 31
+                },
+                {
+                  "N": 35
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:26:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 65
+                },
+                {
+                  "N": 65
+                },
+                {
+                  "N": 68
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 35
+                },
+                {
+                  "N": 37
+                },
+                {
+                  "N": 37
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:31:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 68
+                },
+                {
+                  "N": 71
+                },
+                {
+                  "N": 71
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 36
+                },
+                {
+                  "N": 36
+                },
+                {
+                  "N": 40
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:36:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 71
+                },
+                {
+                  "N": 76
+                },
+                {
+                  "N": 76
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 40
+                },
+                {
+                  "N": 38
+                },
+                {
+                  "N": 38
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:41:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 73
+                },
+                {
+                  "N": 73
+                },
+                {
+                  "N": 75
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 40
+                },
+                {
+                  "N": 40
+                },
+                {
+                  "N": 45
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:46:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 75
+                },
+                {
+                  "N": 75
+                },
+                {
+                  "N": 77
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 45
+                },
+                {
+                  "N": 49
+                },
+                {
+                  "N": 49
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:51:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 80
+                },
+                {
+                  "N": 80
+                },
+                {
+                  "N": 78
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 51
+                },
+                {
+                  "N": 50
+                },
+                {
+                  "N": 52
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:56:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 77
+                },
+                {
+                  "N": 77
+                },
+                {
+                  "N": 77
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 48
+                },
+                {
+                  "N": 47
+                },
+                {
+                  "N": 47
+                }
+              ]
+            }
+        }
+
+      ]
+    },
+    {
+      "RadarId": 2,
+      "active": true,
+      "Item": [
+        {
+        "ts": "2022-06-20T00:01:01.000Z",
+        "Activity": {
+          "heart": [
+            {
+                 "N": 21
+               },
+               {
+                 "N": 22
+               },
+               {
+                 "N": 21
+               }
+           ]
+          ,
+          "breath":[
+              {
+                "N": 20
+              },
+              {
+                "N": 19
+              },
+              {
+                "N": 19
+              }
+            ]
+          }
+        },
+        {
+          "ts": "2022-06-20T00:06:01.000Z",
+          "Activity": {
+            "heart": [
+              {
+                "N": 20
+              },
+              {
+                "N": 23
+              },
+              {
+                "N": 21
+              }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 22
+                },
+                {
+                  "N": 24
+                },
+                {
+                  "N": 23
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:11:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 21
+                },
+                {
+                  "N": 22
+                },
+                {
+                  "N": 23
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 22
+                },
+                {
+                  "N": 24
+                },
+                {
+                  "N": 24
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:16:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 24
+                },
+                {
+                  "N": 24
+                },
+                {
+                  "N": 23
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 25
+                },
+                {
+                  "N": 21
+                },
+                {
+                  "N": 20
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:21:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 22
+                },
+                {
+                  "N": 22
+                },
+                {
+                  "N": 21
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 23
+                },
+                {
+                  "N": 20
+                },
+                {
+                  "N": 21
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:26:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 21
+                },
+                {
+                  "N": 20
+                },
+                {
+                  "N": 20
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 21
+                },
+                {
+                  "N": 19
+                },
+                {
+                  "N": 18
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:31:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 19
+                },
+                {
+                  "N": 19
+                },
+                {
+                  "N": 18
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 17
+                },
+                {
+                  "N": 17
+                },
+                {
+                  "N": 17
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:36:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 18
+                },
+                {
+                  "N": 17
+                },
+                {
+                  "N": 17
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 16
+                },
+                {
+                  "N": 16
+                },
+                {
+                  "N": 15
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:41:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 19
+                },
+                {
+                  "N": 19
+                },
+                {
+                  "N": 19
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 18
+                },
+                {
+                  "N": 18
+                },
+                {
+                  "N": 19
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:46:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 20
+                },
+                {
+                  "N": 20
+                },
+                {
+                  "N": 21
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 22
+                },
+                {
+                  "N": 22
+                },
+                {
+                  "N": 21
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:51:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 22
+                },
+                {
+                  "N": 22
+                },
+                {
+                  "N": 22
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 23
+                },
+                {
+                  "N": 24
+                },
+                {
+                  "N": 22
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:56:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 23
+                },
+                {
+                  "N": 23
+                },
+                {
+                  "N": 25
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 21
+                },
+                {
+                  "N": 19
+                },
+                {
+                  "N": 19
+                }
+              ]
+            }
+        }
+
+      ]
+    },
+    {
+      "RadarId": 3,
+      "active": true,
+      "Item": [
+        {
+        "ts": "2022-06-20T00:01:01.000Z",
+        "Activity": {
+          "heart": [
+            {
+                 "N": 77
+               },
+               {
+                 "N": 78
+               },
+               {
+                 "N": 78
+               }
+           ]
+          ,
+          "breath":[
+              {
+                "N": 48
+              },
+              {
+                "N": 51
+              },
+              {
+                "N": 50
+              }
+            ]
+          }
+        },
+        {
+          "ts": "2022-06-20T00:06:01.000Z",
+          "Activity": {
+            "heart": [
+              {
+                "N": 79
+              },
+              {
+                "N": 80
+              },
+              {
+                "N": 80
+              }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 50
+                },
+                {
+                  "N": 50
+                },
+                {
+                  "N": 50
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:11:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 77
+                },
+                {
+                  "N": 77
+                },
+                {
+                  "N": 76
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 47
+                },
+                {
+                  "N": 47
+                },
+                {
+                  "N": 45
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:16:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 75
+                },
+                {
+                  "N": 75
+                },
+                {
+                  "N": 74
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 44
+                },
+                {
+                  "N": 45
+                },
+                {
+                  "N": 43
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:21:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 76
+                },
+                {
+                  "N": 76
+                },
+                {
+                  "N": 77
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 45
+                },
+                {
+                  "N": 44
+                },
+                {
+                  "N": 44
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:26:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 75
+                },
+                {
+                  "N": 75
+                },
+                {
+                  "N": 74
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 43
+                },
+                {
+                  "N": 42
+                },
+                {
+                  "N": 42
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:31:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 73
+                },
+                {
+                  "N": 73
+                },
+                {
+                  "N": 71
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 42
+                },
+                {
+                  "N": 42
+                },
+                {
+                  "N": 40
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:36:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 70
+                },
+                {
+                  "N": 68
+                },
+                {
+                  "N": 68
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 38
+                },
+                {
+                  "N": 36
+                },
+                {
+                  "N": 36
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:41:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 66
+                },
+                {
+                  "N": 65
+                },
+                {
+                  "N": 65
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 35
+                },
+                {
+                  "N": 34
+                },
+                {
+                  "N": 34
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:46:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 60
+                },
+                {
+                  "N": 58
+                },
+                {
+                  "N": 55
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 34
+                },
+                {
+                  "N": 33
+                },
+                {
+                  "N": 33
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:51:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 54
+                },
+                {
+                  "N": 52
+                },
+                {
+                  "N": 52
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 31
+                },
+                {
+                  "N": 29
+
+                },
+                {
+                  "N": 29
+                }
+              ]
+            }
+        },
+        {
+          "ts": "2022-06-20T00:56:01.000Z",
+          "Activity": {
+            "heart": [
+               {
+                  "N": 50
+                },
+                {
+                  "N": 47
+                },
+                {
+                  "N": 45
+                }
+              ]
+            ,
+            "breath":[
+                {
+                  "N": 29
+                },
+                {
+                  "N": 25
+                },
+                {
+                  "N": 23
+                }
+              ]
+            }
+        }
+
+      ]
+    },
+    {
+      "RadarId": 4,
+      "active": false,
+      "Item": []
+    },
+    {
+      "RadarId": 5,
+      "active": false,
+      "Item": []
+    },
+    {
+      "RadarId": 6,
+      "active": false,
+      "Item": []
+    },
+    {
+      "RadarId": 7,
+      "active": false,
+      "Item": []
+    },
+    {
+      "RadarId": 8,
+      "active": false,
+      "Item": []
+    },
+    {
+      "RadarId": 9,
+      "active": false,
+      "Item": []
+    }
+  ];
+
   data:number;
 
   date: Date = new Date();
@@ -2016,7 +3429,71 @@ export class RadarComponent implements OnInit, OnDestroy {
   intervalId;
   subscription: Subscription;
 
+  getHeartReal(radar_id){
+    var radar;
+    var fc=0.43;
+    var div;
 
+    var ret = [];
+
+    var steps = this.json5[0].Item[0].Activity.heart;
+
+
+    this.json5.forEach((single_radar)=>{
+      if(single_radar.RadarId == radar_id)
+        radar = single_radar;
+      });
+
+
+      steps.forEach((step, i) => {
+        var temp_arr = [];
+       radar.Item.forEach((single_item, j)=>{
+          div= Math.floor(single_item.Activity.heart[i].N/fc);
+          temp_arr.push(div);
+      });
+
+      var obj = {
+        name : " Misura:"+ (i+1),  //+ "  Radar-id: "+radar_id,
+        data : temp_arr,
+      }
+      ret.push(obj);
+    });
+
+    return ret;
+  }
+
+  getBreathReal(radar_id){
+    var radar;
+    var ret = [];
+    var fr=1.65;
+    var div;
+
+    var steps = this.json5[0].Item[0].Activity.heart;
+
+
+    this.json5.forEach((single_radar)=>{
+      if(single_radar.RadarId == radar_id)
+        radar = single_radar;
+      });
+
+
+      steps.forEach((step, i) => {
+        var temp_arr = [];
+       radar.Item.forEach((single_item, j)=>{
+        div= Math.floor(single_item.Activity.breath[i].N/fr);
+        temp_arr.push(div);
+
+      });
+
+      var obj = {
+        name : " Misura:"+ (i+1), // + "  Radar-id: "+radar_id,
+        data : temp_arr,
+      }
+      ret.push(obj);
+    });
+
+    return ret;
+  }
 
   getHeart(radar_id){
     var radar;
@@ -2112,6 +3589,8 @@ export class RadarComponent implements OnInit, OnDestroy {
       this.chartOptions = {
         series: this.getHeart(this.data),
         series2: this.getBreath(this.data),
+        series3: this.getHeartReal(this.data),
+        series4: this.getBreathReal(this.data),
         chart: {
           height: 350,
           type: "bar"
@@ -2121,6 +3600,12 @@ export class RadarComponent implements OnInit, OnDestroy {
         },
         title2: {
           text: "Breath"
+        },
+        titleReal: {
+          text: "Frequenza Cardiaca"
+        },
+        titleReal2: {
+          text: "Frequenza Respiratoria"
         },
         xaxis: {
           categories: ["00:01", "00:06",  "00:11",  "00:16",  "00:21",  "00:26",  "00:31",  "00:36", "00:41", "00:46", "00:51", "00:56"]
