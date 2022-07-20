@@ -34,8 +34,8 @@
             <i class="bi bi-calendar4"></i>
             {{ time | date: 'd/M/Y ' }}
           </span >
-          <span class="nav-item mx-3 mt-2">
-            <i class="bi bi-person"></i> Dott. Rossi
+          <span class="nav-item mx-3 mt-2" style=" text-transform: capitalize;">
+            <i class="bi bi-person"></i> Dott. {{user}}
           </span>
           <a class="nav-item mx-3 mt-2">
              <i class="bi bi-bell"></i>
@@ -43,7 +43,7 @@
           <a class="nav-item mx-3 mt-2">
               <i class="bi bi-exclamation-triangle"></i>
           </a>
-          <a  role="button" type="button" class="btn btn-secondary mx-3" href="#">Esci<i class="bi bi-box-arrow-right ms-2"></i></a>
+          <a  role="button" type="button" class="btn btn-secondary mx-3" (click)="logout()">Esci<i class="bi bi-box-arrow-right ms-2"></i></a>
 
 
 
@@ -196,7 +196,7 @@
             <p class="my-3 mx-2" style="color: #7c7c7cd5;"> <b>ELENCO EMERGENZE</b> </p>
 
             <tr>
-              <th scope="col">DATA</th>
+              <th scope="col">DATA E ORA</th>
               <th scope="col">ID RADAR</th>
               <th scope="col">PAZIENTE</th>
               <th scope="col">STATO</th>
@@ -206,7 +206,7 @@
           </thead>
             <tbody>
               <tr>
-                <td>20/02/2022 12:30</td>
+                <td>20-06-2022 12:30</td>
                 <td>AriaXBT-8709f0b8d06d-0</td>
                 <td>Alfredo Neri</td>
                 <td>ACCETTATA</td>
@@ -214,7 +214,7 @@
                 <td> -> <a class="nav-item " href="onepatient?patientId={{0}}" > Scheda paziente</a></td>
               </tr>
               <tr>
-                <td>20/02/2022 13:30</td>
+                <td>20-06-2022 13:30</td>
                 <td>AriaXBT-8709f0b8d06d-1</td>
                 <td>Maria Biachi</td>
                 <td>ACCETTATA</td>
@@ -222,7 +222,7 @@
                 <td> -> <a class="nav-item " href="onepatient?patientId={{1}}"> Scheda paziente</a></td>
               </tr>
               <tr>
-                <td>20/02/2022 15:00</td>
+                <td>20-06-2022 15:00</td>
                 <td>AriaXBT-8709f0b8d06d-2</td>
                 <td>Michela Rossi</td>
                 <td>ACCETTATA</td>
@@ -230,7 +230,7 @@
                 <td> -> <a class="nav-item " href="onepatient?patientId={{2}}"> Scheda paziente</a></td>
               </tr>
               <tr>
-                <td>20/02/2022 11:00</td>
+                <td>20-06-2022 16:00</td>
                 <td>AriaXBT-8709f0b8d06d-3</td>
                 <td>Roberto Verdi</td>
                 <td>ACCETTATA</td>
@@ -245,11 +245,104 @@
                 </table>
                 </div>
 
+<!--
+                <div class="table-responsive">
+                  <table class="table " style="border: 1px solid  #c9c9c998;">
+                   <thead>
+
+                    <p class=" my-3 mx-2" style="color: #b5b2b2d0; width: 200px;"> <b>SITUAZIONI DI ALERT</b> </p>
+                    <div><div class='box red'  style="margin-left: 20px; margin-top: 2px; margin-right: 5px;"></div> = Situazione di Stress</div>
+                    <div><div class='box blue' style="margin-left: 20px;"></div> = Situazione di Riposo</div>
+                    <tr>
+
+                      <th scope="col">DATA E ORA
+
+                        <br>
+                        <font size="1"> YYYY-MM-DDThh:mm:ss:fffZ </font><br />
+                      </th>
+                      <th scope="col">MESSAGGIO</th>
+                      <th scope="col">AZIONE NOTIFICA</th>
+                      <th scope="col">SCHEDA PAZIENTE</th>
+
+                    </tr>
+                  </thead>
+                    <tbody>
+
+
+
+                      <ng-container *ngFor="let k of stress;  let i = index">
+                        <tr *ngFor="let z of k">
+                        <td > <i class="bi bi-exclamation-triangle"></i> {{z.tempo}}  {{z.minut}} </td>
+                        <td> Il paziente <b>{{pat[z.number]}}</b> <font color="red"> riusulta avere i valori di frequenza cardiaca e frequenza respiratoria superiori a quelli di soglia Massima. É richiesta assistenza. </font> </td>
+                        <td>ACCETTATA</td>
+                        <td>  <a href="onepatient?patientId={{z.number}}" >visualizza report paziente</a></td>
+                        </tr>
+                      </ng-container>
+
+
+                      <ng-container *ngFor="let k of riposo; let j=index" >
+                        <tr *ngFor="let z of k">
+                        <td > <i class="bi bi-exclamation-triangle"></i> {{z.tempo}}  {{z.minut}} </td>
+                        <td> Il paziente <b>{{pat[z.number]}}</b> <font color="blue"> riusulta avere i valori di frequenza cardiaca e frequenza respiratoria inferiori a quelli di soglia Minima. É richiesta assistenza. </font> </td>
+                        <td>ACCETTATA</td>
+                        <td>  <a href="onepatient?patientId={{z.number}}" >visualizza report paziente</a></td>
+                      </tr>
+                      </ng-container>
+
+                   <a class="position-absolute top-100 start-50 link-dark">Carica altre notifiche</a>
+                    </tbody>
+                  </table>
+                </div>
+              -->
+                <div class="table-responsive">
+                  <table class="table " style="border: 1px solid  #c9c9c998;">
+                   <thead>
+
+                    <p class=" my-3 mx-2" style="color: #b5b2b2d0; width: 200px;"> <b>ALERT</b> </p>
+                    <div><div class='box red'  style="margin-left: 20px; margin-top: 2px; margin-right: 5px;"></div> = Situazione di Stress</div>
+                    <div><div class='box blue' style="margin-left: 20px;"></div> = Situazione di Riposo</div>
+                    <tr>
+
+                      <th scope="col">DATA E ORA
+                      <!--
+                        <br>
+                        <font size="1"> YYYY-MM-DDThh:mm:ss:fffZ </font><br />
+                      -->
+                      </th>
+                      <th scope="col">MESSAGGIO</th>
+                      <th scope="col">AZIONE NOTIFICA</th>
+                      <th scope="col">SCHEDA PAZIENTE</th>
+
+                    </tr>
+                  </thead>
+                    <tbody>
+
+
+
+                      <tr *ngFor="let k of ele">
+                        <td> <i class="bi bi-exclamation-triangle"></i> {{k.tempo}} </td>
+                        <td *ngIf="!k.riposo"> Il paziente <b>{{pat[k.number]}}</b> <font color="red"> riusulta avere i valori di frequenza cardiaca e frequenza respiratoria superiori a quelli di soglia Massima. É richiesta assistenza. </font> </td>
+                        <td *ngIf="k.riposo"> Il paziente <b>{{pat[k.number]}}</b> <font color="blue"> riusulta avere i valori di frequenza cardiaca e frequenza respiratoria inferiori a quelli di soglia Minima. É richiesta assistenza. </font> </td>
+                        <td>ACCETTATA</td>
+                        <td>  <a href="onepatient?patientId={{k.number}}" >visualizza report paziente</a></td>
+
+                      </tr>
+
+
+
+
+                   <!--   <a class="position-absolute top-100 start-50 link-dark">Carica altre notifiche</a> -->
+                    </tbody>
+                  </table>
+                </div>
+
+
 
         </main>
       </div>
     </div>
   </div>
+
 
 <!-- potrebbe servire
 <ng-container matColumnDef="position">

@@ -34,8 +34,8 @@
             <i class="bi bi-calendar4"></i>
               {{ time | date: 'd/M/Y ' }}
           </span >
-          <span class="nav-item mx-3 mt-2">
-            <i class="bi bi-person"></i> Dott. Rossi
+          <span class="nav-item mx-3 mt-2" style=" text-transform: capitalize;">
+            <i class="bi bi-person"></i> Dott. {{user}}
           </span>
           <a class="nav-item mx-3 mt-2">
              <i class="bi bi-bell"></i>
@@ -43,7 +43,7 @@
           <a class="nav-item mx-3 mt-2">
               <i class="bi bi-exclamation-triangle"></i>
           </a>
-          <a  role="button" type="button" class="btn btn-secondary mx-3" href="#">Esci<i class="bi bi-box-arrow-right ms-2"></i></a>
+          <a  role="button" type="button" class="btn btn-secondary mx-3" (click)="logout()">Esci<i class="bi bi-box-arrow-right ms-2"></i></a>
 
 
 
@@ -200,10 +200,13 @@
                         <h1 class="py-2" style="font-size: 10px;"> <b>ASSISTENZE</b> </h1>
                         <h1  style="font-size: 40px;"> <b>18</b> </h1>
                       </div>
+                      <div class="loader">
+                      </div>
+<!--
                       <div class="col">
                         <h1 class="py-2" style="font-size: 80px;"><i class="bi bi-pie-chart-fill"></i></h1>
 
-                      </div>
+                      </div> -->
 
                     </div>
                    </a>
@@ -211,13 +214,24 @@
               </div>
               </div>
 
-              <div >
+              <div>
                   <form>
                     <a class="btn btn-light btn-lg px-5 py-3 mb-3" role="button" style="background-color: #c9c9c998;"  href="radar?radarId={{data}}">
                      <h1 class="mt-2" style="font-size: 25px;"><b>MONITORAGGIO STATO RADAR</b></h1>
-                      <h1 class="py-4 px-4" style="font-size: 50px;">  <i class="bi bi-bar-chart-line-fill"  style="font-size: 100px;"></i></h1>
+                    <!--
+                      <div class="icon chart">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                      </div>
+                    -->
+                     <h1 class="py-4 px-4" style="font-size: 50px;">
+                         <i class="bi bi-bar-chart-line-fill"  style="font-size: 100px;"></i>
+                        </h1>
+
                     </a>
                   </form>
+
 
               </div>
 
@@ -232,7 +246,7 @@
 
                   <tr>
 
-                    <th scope="col">ORA</th>
+                    <th scope="col">DATA E ORA</th>
                     <th scope="col">MESSAGGIO</th>
                     <th scope="col">AZIONE</th>
                     <th scope="col">DA QUANTO</th>
@@ -242,20 +256,20 @@
                   <tbody>
 
                     <tr>
-                      <td><i class="bi bi-exclamation-triangle"></i> 12:34</td>
+                      <td><i class="bi bi-exclamation-triangle"></i> 20-06-22 10:00</td>
                       <td> Assistenza medica da operatore </td>
                       <td> ACCETTATA</td>
                       <td> <i class="bi bi-clock"></i> 15 min </td>
                     </tr>
                     <tr>
-                      <td > <i class="bi bi-bell"></i> 12:00</td>
+                      <td > <i class="bi bi-bell"></i> 20-06-22 12:00</td>
                       <td > Mancata assistenza operatore </td>
                       <td>NON ACCETTATA</td>
                       <td> <i class="bi bi-clock"></i> 5 min</td>
                     </tr>
 
                     <tr>
-                      <td> <i class="bi bi-bell"></i> 10:00</td>
+                      <td> <i class="bi bi-bell"></i> 20-06-22 12:34</td>
                       <td> Paziente a letto da più di 2 ore</td>
                       <td>ACCETTATA</td>
                       <td> <i class="bi bi-clock"></i> 20 min</td>
@@ -273,8 +287,6 @@
       </div>
     </div>
   </div>
-
-
 
   </body>
 

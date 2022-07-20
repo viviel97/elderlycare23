@@ -7,6 +7,7 @@ import { PatientService } from 'src/app/entities/patient.service';
 
 import { Subscription, timer } from 'rxjs';
 import { map, share } from "rxjs/operators";
+import { KeycloakService } from 'keycloak-angular';
 
 
 @Component({
@@ -24,8 +25,9 @@ export class PatientComponent implements OnInit, OnDestroy {
   rxTime = new Date();
   intervalId;
   subscription: Subscription;
+  user=''
 
-  constructor(private patientService: PatientService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private patientService: PatientService, private router: Router, private route: ActivatedRoute, private keycloakService: KeycloakService) { }
 
   ngOnInit(): void {
     this.patientService.getPatients().subscribe( result => { this.patients=result; } );
@@ -44,8 +46,16 @@ export class PatientComponent implements OnInit, OnDestroy {
       .subscribe(time => {
         this.rxTime = time;
       });
+      this.initializeUserOptions();
   }
 
+  private initializeUserOptions(): void {
+    this.user=this.keycloakService.getUsername();
+  }
+
+  logout():void {
+    this.keycloakService.logout('http://localhost:4200');
+  }
   ngOnDestroy() {
     clearInterval(this.intervalId);
     if (this.subscription) {

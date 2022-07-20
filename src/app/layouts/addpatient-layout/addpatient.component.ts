@@ -1,5 +1,6 @@
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { KeycloakService } from 'keycloak-angular';
 import { Subscription, timer } from 'rxjs';
 import { map, share } from "rxjs/operators";
 
@@ -15,8 +16,9 @@ export class AddpatientComponent implements OnInit, OnDestroy {
   rxTime = new Date();
   intervalId;
   subscription: Subscription;
+  user=''
 
-  constructor() {}
+  constructor(private keycloakService: KeycloakService) {}
 
   ngOnInit() {
     // Using Basic Interval
@@ -33,7 +35,17 @@ export class AddpatientComponent implements OnInit, OnDestroy {
       .subscribe(time => {
         this.rxTime = time;
       });
+      this.initializeUserOptions();
   }
+
+  private initializeUserOptions(): void {
+    this.user=this.keycloakService.getUsername();
+  }
+
+  logout():void {
+    this.keycloakService.logout('http://localhost:4200');
+  }
+
 
   ngOnDestroy() {
     clearInterval(this.intervalId);
