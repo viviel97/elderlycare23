@@ -252,7 +252,7 @@
 
                     <p class=" my-3 mx-2" style="color: #b5b2b2d0; width: 200px;"> <b>SITUAZIONI DI ALERT</b> </p>
                     <div><div class='box red'  style="margin-left: 20px; margin-top: 2px; margin-right: 5px;"></div> = Situazione di Stress</div>
-                    <div><div class='box blue' style="margin-left: 20px;"></div> = Situazione di Riposo</div>
+                    <div><div class='box blue' style="margin-left: 20px;"></div> = Situazione di Possibile mancamento</div>
                     <tr>
 
                       <th scope="col">DATA E ORA
@@ -280,7 +280,7 @@
                       </ng-container>
 
 
-                      <ng-container *ngFor="let k of riposo; let j=index" >
+                      <ng-container *ngFor="let k of mancamento; let j=index" >
                         <tr *ngFor="let z of k">
                         <td > <i class="bi bi-exclamation-triangle"></i> {{z.tempo}}  {{z.minut}} </td>
                         <td> Il paziente <b>{{pat[z.number]}}</b> <font color="blue"> riusulta avere i valori di frequenza cardiaca e frequenza respiratoria inferiori a quelli di soglia Minima. É richiesta assistenza. </font> </td>
@@ -300,7 +300,7 @@
 
                     <p class=" my-3 mx-2" style="color: #b5b2b2d0; width: 200px;"> <b>ALERT</b> </p>
                     <div><div class='box red'  style="margin-left: 20px; margin-top: 2px; margin-right: 5px;"></div> = Situazione di Stress</div>
-                    <div><div class='box blue' style="margin-left: 20px;"></div> = Situazione di Riposo</div>
+                    <div><div class='box blue' style="margin-left: 20px;"></div> = Situazione di Possibile mancamento</div>
                     <tr>
 
                       <th scope="col">DATA E ORA
@@ -321,8 +321,8 @@
 
                       <tr *ngFor="let k of ele">
                         <td> <i class="bi bi-exclamation-triangle"></i> {{k.tempo}} </td>
-                        <td *ngIf="!k.riposo"> Il paziente <b>{{pat[k.number]}}</b> <font color="red"> riusulta avere i valori di frequenza cardiaca e frequenza respiratoria superiori a quelli di soglia Massima. É richiesta assistenza. </font> </td>
-                        <td *ngIf="k.riposo"> Il paziente <b>{{pat[k.number]}}</b> <font color="blue"> riusulta avere i valori di frequenza cardiaca e frequenza respiratoria inferiori a quelli di soglia Minima. É richiesta assistenza. </font> </td>
+                        <td *ngIf="!k.mancamento"> Il paziente <b>{{pat[k.number]}}</b> <font color="red"> riusulta avere i valori di frequenza cardiaca e frequenza respiratoria superiori a quelli di soglia Massima. É richiesta assistenza. </font> </td>
+                        <td *ngIf="k.mancamento"> Il paziente <b>{{pat[k.number]}}</b> <font color="blue"> riusulta avere i valori di frequenza cardiaca e frequenza respiratoria inferiori a quelli di soglia Minima. É richiesta assistenza. </font> </td>
                         <td>ACCETTATA</td>
                         <td>  <a href="onepatient?patientId={{k.number}}" >visualizza report paziente</a></td>
 

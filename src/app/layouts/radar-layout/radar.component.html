@@ -180,7 +180,7 @@
                           <select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" style="margin-left: 10px; margin-bottom: 10px;">
                            <option value="default">----</option>
                            <option value="radar?radarId={{0}}">Radar 0 - Alfredo Neri</option>
-                           <option value="radar?radarId={{1}}">Radar 1 - Maria Biachi</option>
+                           <option value="radar?radarId={{1}}">Radar 1 - Maria Bianchi</option>
                            <option value="radar?radarId={{2}}">Radar 2 - Michela Rossi</option>
                            <option value="radar?radarId={{3}}">Radar 3 - Roberto Verdi</option>
                           </select>
@@ -262,6 +262,12 @@
     </div>
 
     <h2 style="text-align:center; margin-top: 100px;">Detailed time: scala 100</h2>
+    <h4 style="text-align:center;">Dati biometrici</h4>
+    <h6 style="text-align:center;"> bpmMax=181 &nbsp; bpmMin=44 </h6>
+    <h6 style="text-align:center;"> rpmMax=30 &nbsp; rpmMin=10 </h6>
+    <!--FC maxValue = 181 bpm  minValue = 44 bpm -->
+    <!--FR maxValue = 30 rpm  minValue = 10 rpm -->
+
     <div style="text-align:center; margin-top: 50px">
       <apx-chart
         [series]="chartOptions.series3"
@@ -344,7 +350,7 @@
 
               <p class=" my-3 mx-2" style="color: #b5b2b2d0; width: 200px;"> <b>ALERT PAZIENTE</b> </p>
               <div><div class='box red'  style="margin-left: 20px; margin-top: 2px; margin-right: 5px;"></div> = Situazione di Stress</div>
-              <div><div class='box blue' style="margin-left: 20px;"></div> = Situazione di Riposo</div>
+              <div><div class='box blue' style="margin-left: 20px;"></div> = Situazione di possibile Mancamento</div>
               <tr>
 
                 <th scope="col">DATA E ORA
@@ -360,7 +366,7 @@
               </tr>
             </thead>
               <tbody>
-                <tr *ngIf="stress[0].riposo==false; else logge">
+                <tr *ngIf="stress[0].mancamento==false; else logge">
 
 
                 </tr>
@@ -375,7 +381,7 @@
                   <td>  <a href="onepatient?patientId={{data}}" >visualizza report paziente</a></td>
                 </tr>
               </ng-template>
-                <tr *ngFor="let k of riposo" >
+                <tr *ngFor="let k of mancamento" >
                   <td > <i class="bi bi-exclamation-triangle"></i> {{k.tempo}} </td>
                   <td> Il paziente <b>{{pat[data]}}</b> <font color="blue"> riusulta avere i valori di frequenza cardiaca e frequenza respiratoria inferiori a quelli di soglia Minima. É richiesta assistenza. </font> </td>
                   <td>ACCETTATA</td>
@@ -397,7 +403,7 @@
 
             <p class=" my-3 mx-2" style="color: #b5b2b2d0; width: 200px;"> <b>SITUAZIONI DI ALERT</b> </p>
             <div><div class='box red'  style="margin-left: 20px; margin-top: 2px; margin-right: 5px;"></div> = Situazione di Stress</div>
-            <div><div class='box blue' style="margin-left: 20px;"></div> = Situazione di Riposo</div>
+            <div><div class='box blue' style="margin-left: 20px;"></div> = Situazione di possibile Mancamento</div>
             <tr>
 
               <th scope="col">DATA E ORA
@@ -425,7 +431,7 @@
               </ng-container>
 
 
-              <ng-container *ngFor="let k of riposo2; let j=index" >
+              <ng-container *ngFor="let k of mancamento2; let j=index" >
                 <tr *ngFor="let z of k">
                 <td > <i class="bi bi-exclamation-triangle"></i> {{k.tempo}}  {{k.minut}} </td>
                 <td> Il paziente <b>{{pat[z.number]}}</b> <font color="blue"> riusulta avere i valori di frequenza cardiaca e frequenza respiratoria inferiori a quelli di soglia Minima. É richiesta assistenza. </font> </td>
@@ -443,18 +449,18 @@
 
 <!--
         <div>
-          <h1>SITUAZIONI DI RIPOSO</h1>
+          <h1>SITUAZIONI DI POSSIBILE MANCAMENTO</h1>
           <div>
             <ul>
-              <li *ngFor="let n of riposo">
+              <li *ngFor="let n of mancamento">
 
                 Radar ID: {{n.name}}
                 Tempo: {{n.tempo}}
-                riposo:{{n.riposo}}
+                mancamento:{{n.mancamento}}
 
               </li>
-              <li *ngIf="!riposo">
-                <p> NON SONO STATE IDENTIFICATE SITUAZIONI DI RIPOSO PER QUESTO PAZIENTE</p>
+              <li *ngIf="!mancamento">
+                <p> NON SONO STATE IDENTIFICATE SITUAZIONI DI POSSIBILE MANCAMENTO PER QUESTO PAZIENTE</p>
 
               </li>
              </ul>
@@ -467,8 +473,8 @@
 <div>
   <h1>SITUAZIONI DI STRESS 2</h1>
   <ul>
-        <div *ngIf="stress[0].riposo==false; else loggedOut">
-          <li> NON SONO STATE IDENTIFICATE SITUAZIONI DI RIPOSO PER QUESTO PAZIENTE
+        <div *ngIf="stress[0].mancamento==false; else loggedOut">
+          <li> NON SONO STATE IDENTIFICATE SITUAZIONI DI POSSIBILE MANCAMENTO PER QUESTO PAZIENTE
 
         </div>
 
@@ -476,7 +482,7 @@
           <li *ngFor="let n of stress"  >
             Radar ID: {{n.name}}
             Tempo: {{n.tempo}}
-            riposo:{{n.riposo}}
+            mancamento:{{n.mancamento}}
             </li>
         </ng-template>
 

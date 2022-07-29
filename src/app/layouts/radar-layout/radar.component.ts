@@ -45,11 +45,11 @@ export class RadarComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   stress: any[]=[];
-  riposo: any[]=[];
+  mancamento: any[]=[];
 
 
   stress2: any[]=[];
-  riposo2: any[]=[];
+  mancamento2: any[]=[];
 
   pat=[
     'Alfredo Neri', 'Maria Bianchi', 'Michela Rossi', 'Roberto Verdi'
@@ -3448,7 +3448,7 @@ export class RadarComponent implements OnInit, OnDestroy {
 
   //HEART SCALA 10
   getHeart(radar_id){
-    var radar;
+    var radar: { Item: any; RadarId?: number; active?: boolean; };
     var ret = [];
 
     var steps = this.json[0].Item[0].Activity.heart;
@@ -3505,9 +3505,9 @@ export class RadarComponent implements OnInit, OnDestroy {
 
   //HEART SCALA 100
   getHeartReal(radar_id){
-    var radar;
+    var radar: { Item: any; RadarId?: number; active?: boolean; };
     var fc=0.43;
-    var div;
+    var div: number;
 
     var ret = [];
 
@@ -3540,10 +3540,10 @@ export class RadarComponent implements OnInit, OnDestroy {
 
   //BREATH SCALA 100
   getBreathReal(radar_id){
-    var radar;
+    var radar: { Item: any; RadarId?: number; active?: boolean; };
     var ret = [];
     var fr=1.65;
-    var div;
+    var div: number;
 
 
     var steps = this.json5[0].Item[0].Activity.heart;
@@ -3573,309 +3573,131 @@ export class RadarComponent implements OnInit, OnDestroy {
     return ret;
   }
 
-  //PATTERN RIPOSO
-  patternRiposo(radar_id: number){
-    console.log(" ");
+  //PATTERN POSSIBILE MANCAMENTO
+  patternMancamento(radar_id: number){
     var minuto: string;
+    var h: number;      //valore di frequenza cardiaca
+    var b: number;      //valore di frequenza respiratoria
+    var h1: number;     //valore di frequenza cardiaca
+    var b1: number;     //valore di frequenza respiratoria
+    var cont: number;
+    var bMin=17;        //valore di possibile Mancamento Frequenza Respiratoria
+    var hMin=19;        //valore di possibile Mancamento Frequenza Cardiaca
+    var data: string;   //data da riportare nella tabella
+    var ora: string;    //ora da riportare nella tabella
+    var mint=1;
+    var ret: any = [];
 
-    var h: number;
-    var b: number;
+    //insieme di dati da inserire nella tabella
     var obj: {
-      name: string; // + "  Radar-id: "+radar_id,
+      name: string;     //RadarID
       tempo: string;
-      riposo: boolean;
+      mancamento: boolean;  //se true identifica situazione di possibile mancamento
       number: number;
       minut: number;
-    } = { name: " ", tempo:" ", riposo: false, number: 0, minut: 0};
-    var ret: any = [];
-    ret.push(obj);
-    var cont;
-    var bMin=17;
-    var hMin=19;
+     } = { name: " ", tempo:" ", mancamento: false, number: 0, minut: 0};
 
-    var data: string;
-    var ora: string;
-    var mint=1;
 
-    // var ret = [];
+   // ret.push(obj);
+
 
     for(let i=0; i<this.json5[0].Item.length; i++){
       cont=0;
-      console.log("Item n:"+i);
-      minuto=this.json5[0].Item[i].ts;
-      console.log(minuto);
-      console.log("Cont="+cont)
+      minuto=this.json5[0].Item[i].ts; //timestamp
+      for(let j=0; j<this.json5[0].Item[0].Activity.heart.length-1; j++){
+        h=this.json5[radar_id].Item[i].Activity.heart[j].N;         // i-esimo valore di frequenza cardiaca
+        b=this.json5[radar_id].Item[i].Activity.breath[j].N;        // i-esimo valore di frequenza respiratoria
+        h1=this.json5[radar_id].Item[i].Activity.heart[j+1].N;      // i+1-esimo valore di frequenza cardiaca
+        b1=this.json5[radar_id].Item[i].Activity.breath[j+1].N;     // i+1-esimo valore di frequenza respiratoria
 
-    for(let j=0; j<this.json5[0].Item[0].Activity.heart.length; j++){
-        h=this.json5[radar_id].Item[i].Activity.heart[j].N;
-        console.log("h"+j+"="+h);
-        b=this.json5[radar_id].Item[i].Activity.breath[j].N;
-        console.log("b"+j+"="+b);
-        console.log(" ");
-        if(b<=bMin && h<=hMin){
+        if(b<=bMin && h<=hMin && b1<=bMin && h1<=hMin){
           cont++;
-          console.log("Cont="+cont)
-
         }
 
-    }
+      }
 
-    if(cont>=2) {
-      console.log("**** SITUAZIONE DI RIPOSO minuto 00:"+minuto+" ****")
-      console.log("")
-
-      // RIPOSO==TRUE
-        if(ret[0].riposo == false) ret.pop(0);
+      //se due valori consecutivi nell'arco dei 5 minuti sono inferiori ai valori di possibile mancamento di frequenza cardiaca e respiratoria identifica situazione di possibile mancamento
+      if(cont>0) {
+      //  if(ret[0].mancamento == false) {
+        //  ret.pop(0);
+        //}
         data=minuto.substring(0,10);
         ora=minuto.substring(11,16);
         obj = {
-        name : "AriaXBT-8709f0b8d06d-"+ radar_id, // + "  Radar-id: "+radar_id,
-        tempo: this.formatDate(data)+" "+ora,
-        riposo : true,
-        number: radar_id,
-        minut: mint
-        }
-      ret.push(obj);
-      console.log("ret="+ret[0].riposo);
-    }
-  }
-  console.log("#### ret="+ret[0].name);
-  console.log("#### ret="+ret[0].tempo);
-  console.log("#### ret="+ret[0].riposo);
-  console.log("#### ret="+ret[1].name);
-  console.log("#### ret="+ret[1].tempo);
-  console.log("#### ret="+ret[1].riposo);
-  return ret;
-  }
-
-  patternRiposo2(radar_id: number){
-    console.log(" ");
-    var minuto: string;
-
-    var h: number;
-    var b: number;
-    var obj: {
-      name: string; // + "  Radar-id: "+radar_id,
-      tempo: string;
-      riposo: boolean;
-      number: number;
-      minut: number;
-    } = { name: " ", tempo:" ", riposo: true, number: 0, minut: 0};
-    var ret: any = [];
-    //ret.push(obj);
-    var cont: string | number;
-    var bMin=17;
-    var hMin=19;
-
-    var data: string;
-    var ora: string;
-
-    var mint=1;
-    // var ret = [];
-
-    for(let i=0; i<this.json5[0].Item.length; i++){
-      cont=0;
-      console.log("Item n:"+i);
-      minuto=this.json5[0].Item[i].ts;
-      console.log(minuto);
-      console.log("Cont="+cont)
-
-      for(let j=0; j<this.json5[0].Item[0].Activity.heart.length; j++){
-         h=this.json5[radar_id].Item[i].Activity.heart[j].N;
-          console.log("h"+j+"="+h);
-          b=this.json5[radar_id].Item[i].Activity.breath[j].N;
-          console.log("b"+j+"="+b);
-          console.log(" ");
-          if(b<=bMin && h<=hMin){
-            cont++;
-            console.log("Cont="+cont)
-          }
-       }
-
-    if(cont>=2) {
-      console.log("**** SITUAZIONE DI RIPOSO minuto 00:"+minuto+" ****")
-      console.log("")
-
-      // RIPOSO==TRUE
-   //     if(ret[0].riposo == false) ret.pop(0);
-
-        data=minuto.substring(0,10);
-        ora=minuto.substring(11,16);
-        obj = {
-          name : "AriaXBT-8709f0b8d06d-"+ radar_id, // + "  Radar-id: "+radar_id,
+          name : "AriaXBT-8709f0b8d06d-"+ radar_id,
           tempo: this.formatDate(data)+" "+ora,
-          riposo : true,
+          mancamento : true,
           number: radar_id,
           minut: mint
+          }
+        ret.push(obj);
         }
-      ret.push(obj);
-      console.log("ret="+ret[0].riposo);
     }
-    mint+=5;
 
-  }
-  for(let b=0; b<ret.length; b++ ){
-    console.log("VALORE N:"+b);
-    console.log("#### ret="+ret[b].name);
-    console.log("#### ret="+ret[b].tempo);
-    console.log("#### ret="+ret[b].riposo);
-    console.log(" ");
-    }
-  return ret;
+    return ret;
   }
 
   //PATTERN STRESS
   patternStress(radar_id: number){
-
-    console.log(" ");
     var minuto: string;
+    var h: number;      //valore di frequenza cardiaca
+    var b: number;      //valore di frequenza respiratoria
+    var h1: number;      //valore di frequenza cardiaca
+    var b1: number;      //valore di frequenza respiratoria
+    var cont: number;
+    var bMax=50;        //valore di Stress Frequenza Respiratoria (vedi figura 48)
+    var hMax=78;        //valore di Stress Frequenza Cardiaca (vedi figura 47)
+    var data: string;   //data da riportare nella tabella
+    var ora: string;    //ora da riportare nella tabella
+    var mint=1;
+    var ret: any = [];
 
-    var h: number; //frequenza cardiaca
-    var b: number; //frequenza respiratoria
-
-    var boh: {
-      name: string; // + "  Radar-id: "+radar_id,
+    //insieme di dati da inserire nella tabella
+    var obj: {
+      name: string;     //RadarID
       tempo: string;
-      riposo: boolean;
+      mancamento: boolean;  //se false identifica situazione di stress
       number: number;
       minut: number;
-    } = { name: " ", tempo:" ", riposo: false, number: 0, minut: 0};
-    var ret: any = [];
-    ret.push(boh);
-    var cont;
-    var bMax=50;
-    var hMax=78;
+      } = { name: " ", tempo:" ", mancamento: false, number: 0, minut: 0};
 
-
-    var data: string;
-    var ora: string;
-    var mint=1;
+      ret.push(obj);
 
     for(let i=0; i<this.json5[0].Item.length; i++){
       cont=0;
-      console.log("Item n:"+i);
       minuto=this.json5[0].Item[i].ts; //timestamp
-      console.log(minuto);
-      console.log("Cont="+cont)
-
-      for(let j=0; j<this.json5[0].Item[0].Activity.heart.length; j++){
-          h=this.json5[radar_id].Item[i].Activity.heart[j].N;
-          console.log("h="+h);
-          b=this.json5[radar_id].Item[i].Activity.breath[j].N;
-          console.log("b="+b);
-          console.log(" ");
-          if(b>=bMax && h>=hMax){
-            cont++;
-            console.log("Cont="+cont)
-          }
+      for(let j=0; j<this.json5[0].Item[0].Activity.heart.length-1; j++){
+        h=this.json5[radar_id].Item[i].Activity.heart[j].N;     // i-esimo valore di frequenza cardiaca
+        b=this.json5[radar_id].Item[i].Activity.breath[j].N;    // i-esimo valore di frequenza respiratoria
+        h1=this.json5[radar_id].Item[i].Activity.heart[j+1].N;  // i+1-esimo valore di frequenza cardiaca
+        b1=this.json5[radar_id].Item[i].Activity.breath[j+1].N; // i+1-esimo valore di frequenza respiratoria
+        if(b>=bMax && h>=hMax && b1>=bMax && h1>=hMax){
+          cont++;
+        }
       }
 
-      if(cont>=2) {
-        console.log("**** SITUAZIONE DI STRESS minuto 00:"+minuto+" ****")
-        console.log("")
-        // STRESS==TRUE
-        if(ret[0].riposo == false) ret.pop(0);
+      //se due valori consecutivi nell'arco dei 5 minuti sono superiori ai valori di Stress di frequenza cardiaca e respiratoria identifica situazione di stress
+      if(cont>0) {
+        if(ret[0].mancamento == false){
+          ret.pop(0);
+        }
         data=minuto.substring(0,10);
         ora=minuto.substring(11,16);
-        boh = {
-          name : "AriaXBT-8709f0b8d06d-"+radar_id, // + "  Radar-id: "+radar_id,
+        obj = {
+          name : "AriaXBT-8709f0b8d06d-"+radar_id,
           tempo: this.formatDate(data)+" "+ora,
-          riposo : true,
+          mancamento : true,
           number: radar_id,
           minut: mint
           }
-        ret.push(boh);
-        console.log("ret="+ret[0].riposo);
-
+        ret.push(obj);
       }
     }
-    console.log("#### ret="+ret[0].name);
-    console.log("#### ret="+ret[0].tempo);
-    console.log("#### ret="+ret[0].riposo);
-
-
 
     return ret;
 
   }
 
-  patternStress2(radar_id: number){
-
-    console.log(" ");
-    var minuto: string;
-
-    var h: number; //frequenza cardiaca
-    var b: number; //frequenza respiratoria
-
-    var boh: {
-      name: string; // + "  Radar-id: "+radar_id,
-      tempo: string;
-      riposo: boolean;
-      number: number;
-      minut: number;
-    } = { name: " ", tempo:" ", riposo: false, number: 0, minut: 0};
-    var ret: any = [];
-    //ret.push(boh);
-    var cont: string | number;
-    var bMax=50;
-    var hMax=78;
-
-    var data: string;
-    var ora: string;
-    var mint=1;
-
-    for(let i=0; i<this.json5[0].Item.length; i++){
-      cont=0;
-      console.log("Item n:"+i);
-      minuto=this.json5[0].Item[i].ts; //timestamp
-      console.log(minuto);
-      console.log("Cont="+cont)
-
-      for(let j=0; j<this.json5[0].Item[0].Activity.heart.length; j++){
-          h=this.json5[radar_id].Item[i].Activity.heart[j].N;
-          console.log("h="+h);
-          b=this.json5[radar_id].Item[i].Activity.breath[j].N;
-          console.log("b="+b);
-          console.log(" ");
-          if(b>=bMax && h>=hMax){
-            cont++;
-            console.log("Cont="+cont)
-          }
-      }
-
-      if(cont>=2) {
-        console.log("**** SITUAZIONE DI STRESS minuto 00:"+minuto+" ****")
-        console.log("")
-        // STRESS==TRUE
-      //  if(ret[0].riposo == false) ret.pop(0);
-        data=minuto.substring(0,10);
-        ora=minuto.substring(11,16);
-
-        boh = {
-          name : "AriaXBT-8709f0b8d06d-"+radar_id, // + "  Radar-id: "+radar_id,
-          tempo: this.formatDate(data)+" "+ora,
-          riposo : false,
-          number: radar_id,
-          minut: mint
-          }
-        ret.push(boh);
-        console.log("ret="+ret[0].riposo);
-      }
-      mint+=5;
-    }
-
-    for(let b=0; b<ret.length; b++ ){
-    console.log("VALORE N:"+b);
-    console.log("#### ret="+ret[b].name);
-    console.log("#### ret="+ret[b].tempo);
-    console.log("#### ret="+ret[b].riposo);
-    console.log(" ");
-    }
-
-
-    return ret;
-
-  }
 
   //INVERTE LA DATA
   formatDate (input: string) {
@@ -3921,10 +3743,7 @@ export class RadarComponent implements OnInit, OnDestroy {
 
 
     this.stress=this.patternStress(this.data);
-    this.riposo= this.patternRiposo(this.data);
-
-    this.stress2=this.patternStress2(this.data);
-    this.riposo2= this.patternRiposo2(this.data);
+    this.mancamento= this.patternMancamento(this.data);
 
   }
 
@@ -3951,16 +3770,16 @@ export class RadarComponent implements OnInit, OnDestroy {
           type: "bar"
         },
         title: {
-          text: "Frequenza Cardiaca"
+          text: "Frequenza Cardiaca (bpm)"
         },
         title2: {
-          text: "Frequenza Respiratoria"
+          text: "Frequenza Respiratoria (rpm)"
         },
         titleReal: {
-          text: "Frequenza Cardiaca"
+          text: "Frequenza Cardiaca (bpm)"
         },
         titleReal2: {
-          text: "Frequenza Respiratoria"
+          text: "Frequenza Respiratoria (rpm)"
         },
         xaxis: {
           categories: ["00:01", "00:06",  "00:11",  "00:16",  "00:21",  "00:26",  "00:31",  "00:36", "00:41", "00:46", "00:51", "00:56"]
