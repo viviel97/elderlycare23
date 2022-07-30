@@ -202,47 +202,11 @@
                   </td>
               </table>
 
-
+<!--GRAFICO 1-->
       <h2 style="text-align:center; margin-top: 100px;">Radar id: AriaXBT-8709f0b8d06d-{{data}}</h2>
       <h2 style="text-align:center;">Paziente: {{pat[data]}}  <a style="margin-left:30px;" href="onepatient?patientId={{data}}"><font size="3">Vedi Scheda paziente</font></a> </h2>
       <h2 style="text-align:center; margin-top: 100px;">Detailed time: scala 10</h2>
-                    <!--    <td> <a class="nav-item " href="onepatient?patientId={{patient.PatientId}}">visualizza report paziente</a>  </td>
--->
 
-<!--
-<label for="select">Seleziona Radar Attivo </label>
-<select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" style="margin-left: 10px; margin-right: 10px;">
-  <option value="default">----</option>
-	<option *ngFor="let radar of radars" value="radar?radarId={{radar.RadarId}}" >
-		Radar {{radar.RadarId}}
-  </option>
-</select>
--->
-
-
-
-<!--
-<ng-container *ngFor="let radar of radars">
-  <option *ngIf="radar.active==true"  value="radar?radarId={{radar.RadarId}}" >{{radar.RadarId}}</option>
-</ng-container>
--->
-
-
-
-<!--GRAFICO 1
-      <div id="app">
-        <div id="wrapper1" >
-         <apx-chart [series]="prova" [chart]="chart" [title]="title2"></apx-chart>
-        </div>
-      </div>
-
-
-      <div id="app">
-        <div id="wrapper1" >
-          <apx-chart [series]="series" [chart]="chart" [title]="title"></apx-chart>
-        </div>
-      </div>
-    -->
 
 <div style="text-align:center; margin-top: 50px">
       <apx-chart
@@ -261,6 +225,7 @@
       ></apx-chart>
     </div>
 
+<!--GRAFICO 2-->
     <h2 style="text-align:center; margin-top: 100px;">Detailed time: scala 100</h2>
     <h4 style="text-align:center;">Dati biometrici</h4>
     <h6 style="text-align:center;"> bpmMax=181 &nbsp; bpmMin=44 </h6>
@@ -349,8 +314,12 @@
              <thead>
 
               <p class=" my-3 mx-2" style="color: #b5b2b2d0; width: 200px;"> <b>ALERT PAZIENTE</b> </p>
-              <div><div class='box red'  style="margin-left: 20px; margin-top: 2px; margin-right: 5px;"></div> = Situazione di Stress</div>
-              <div><div class='box blue' style="margin-left: 20px;"></div> = Situazione di possibile Mancamento</div>
+              <!-- <div><div class='box red'  style="margin-left: 20px; margin-top: 2px; margin-right: 5px;"></div> = Situazione di Stress</div>
+              <div><div class='box blue' style="margin-left: 20px;"></div> </div>
+              <p style="font-size: 11px;">= Situazione di possibile Mancamento</p> -->
+
+              <div class='box red'  style="margin-left: 10px; margin-top: 2px; margin-right: 5px;"></div><p style="font-size: 11px;"> = Situazione di Stress </p>
+              <div class='box blue' style="margin-left: 10px;  margin-top: 2px; margin-right: 5px;"></div> <p style="font-size: 11px;"> = Situazione di possibile Mancamento </p>
               <tr>
 
                 <th scope="col">DATA E ORA
